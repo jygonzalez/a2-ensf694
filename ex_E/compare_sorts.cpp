@@ -15,15 +15,23 @@ int main() {
     
     read_words(input_file, words, num_words);
     
-    int indices[num_words];
+    int original_indices[num_words];
     for (int i = 0; i < num_words; ++i) {
-        indices[i] = i;
+        original_indices[i] = i;
     }
 
+    int indices[num_words];
+
+    // Quick Sort
+    memcpy(indices, original_indices, sizeof(indices));
     sort_and_measure_quicksort(words, indices, num_words, quicksort, "Quick Sort");
-    write_words("output_quicksort.txt", words, indices, num_words);
+    write_words("output_quicksort.txt", words, indices, num_words);   
+    // Shell Sort
+    memcpy(indices, original_indices, sizeof(indices));
     sort_and_measure_shell_bubble(words, indices, num_words, shellsort, "Shell Sort");
     write_words("output_shellsort.txt", words, indices, num_words);
+    // Bubble Sort
+    memcpy(indices, original_indices, sizeof(indices));
     sort_and_measure_shell_bubble(words, indices, num_words, bubblesort, "Bubble Sort");
     write_words("output_bubblesort.txt", words, indices, num_words);
     return 0;
